@@ -3,12 +3,20 @@ from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 import os
 import requests
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 app = FastAPI(title="Movie Recommendation API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load data
 movies = pickle.load(open("movies.pkl", "rb"))

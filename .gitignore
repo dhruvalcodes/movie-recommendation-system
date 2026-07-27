@@ -3,3 +3,9 @@ venv/
 __pycache__/
 *.pyc
 *.pkl
+
+# Frontend
+
+frontend/node_modules/
+
+frontend/dist/

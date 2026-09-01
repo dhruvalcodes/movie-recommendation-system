@@ -120,5 +120,3 @@ ML model files: Git LFS
 ## Author
 
 Dhruval Prajapati
-
-GitHub: https://github.com/dhruvalcodes

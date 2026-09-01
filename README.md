@@ -55,41 +55,41 @@ Movie Dataset + Trained Models
       ↓
    TMDB API
 
-## Setup
+### Setup
 
-### Backend
+## Backend
 
-Navigate to the backend directory:
+## Navigate to the backend directory:
 
 cd backend
 
-Install dependencies:
+##  Install dependencies:
 
 pip install -r requirements.txt
 
-Create a .env file:
+##  Create a .env file:
 
 TMDB_API_KEY=your_api_key_here
 
-Run the API:
+##  Run the API:
 
 uvicorn app:app --reload
 
-Open the API documentation:
+##  Open the API documentation:
 
 http://127.0.0.1:8000/docs
 
-### Frontend
+## Frontend
 
-Navigate to the frontend directory:
+## Navigate to the frontend directory:
 
 cd frontend
 
-Install dependencies:
+##  Install dependencies:
 
 npm install
 
-Start the development server:
+##  Start the development server:
 
 npm run dev
 

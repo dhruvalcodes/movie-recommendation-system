@@ -13,7 +13,9 @@ app = FastAPI(title="Movie Recommendation API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173",
+                   "https://dhruval-movie-recommender.netlify.app",
+                   ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

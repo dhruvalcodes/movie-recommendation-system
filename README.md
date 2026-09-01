@@ -1,122 +1,276 @@
-# Movie Recommendation System 🎬
+# 🎬 Movie Recommendation System
 
-An AI/ML movie recommendation system that recommends similar movies using content-based filtering, TF-IDF, and cosine similarity.
+An AI/ML-powered movie recommendation system that recommends similar movies using content-based filtering, TF-IDF vectorisation, and cosine similarity.
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-Frontend: https://dhruval-movie-recommender.netlify.app/
+**Frontend:** https://dhruval-movie-recommender.netlify.app/
 
-API Documentation: https://movie-recommendation-api-8vao.onrender.com/docs
+**API Documentation:** https://movie-recommendation-api-8vao.onrender.com/docs
 
-## Features
+---
 
-- Content-based movie recommendations
-- TF-IDF vectorisation for movie features
-- Cosine similarity to find similar movies
-- FastAPI REST API for serving recommendations
-- React frontend
-- TMDB API integration for movie posters, ratings, and additional details
-- Frontend error handling for invalid movie searches
-- Deployed frontend and backend
+## 📌 Overview
 
-## Tech Stack
+This project is a content-based movie recommendation system built using Python and machine learning.
 
-- Python
-- Pandas
-- Scikit-learn
-- FastAPI
-- React
-- JavaScript
-- TMDB API
-- Git LFS
-- Netlify
-- Render
+The system analyses movie metadata and uses TF-IDF and cosine similarity to find movies with similar characteristics. A FastAPI backend serves the recommendation model through a REST API, while a React frontend provides a user-friendly interface.
 
-## How It Works
+The TMDB API is used to retrieve additional movie information such as posters, ratings, release years, and overviews.
 
-1. Movie data is cleaned and processed.
-2. Movie metadata is converted into numerical vectors using TF-IDF.
-3. Cosine similarity is used to identify similar movies.
-4. FastAPI serves the recommendations through a REST API.
-5. The React frontend communicates with the FastAPI backend.
-6. TMDB API provides additional movie information such as posters and ratings.
+---
 
-## Project Architecture
+## ✨ Features
+
+- 🎬 Content-based movie recommendations
+- 🤖 TF-IDF vectorisation
+- 🔎 Cosine similarity
+- ⚡ FastAPI REST API
+- ⚛️ React frontend
+- 🎥 TMDB API integration
+- ⭐ Movie ratings and metadata
+- 🖼️ Movie poster retrieval
+- 🛡️ Frontend error handling
+- ☁️ Cloud deployment
+- 📦 Git LFS for trained ML models
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Machine learning and backend |
+| Pandas | Data processing |
+| Scikit-learn | TF-IDF and cosine similarity |
+| FastAPI | REST API |
+| React | Frontend |
+| JavaScript | Frontend logic |
+| TMDB API | Movie metadata and posters |
+| Git LFS | Large ML model files |
+| Netlify | Frontend deployment |
+| Render | Backend deployment |
+
+---
+
+## 🧠 How It Works
+
+### 1. Movie Data
+
+Movie information from the TMDB 5000 dataset is cleaned and processed.
+
+### 2. Feature Processing
+
+Relevant movie metadata is combined to create a feature representation for each movie.
+
+### 3. TF-IDF
+
+TF-IDF converts the movie metadata into numerical vectors.
+
+### 4. Cosine Similarity
+
+Cosine similarity compares the movie vectors and identifies movies with similar characteristics.
+
+### 5. Recommendations
+
+The movies with the highest similarity scores are returned through the FastAPI backend.
+
+### 6. TMDB API
+
+The TMDB API provides additional movie information such as posters, ratings, release years, and overviews.
+
+---
+
+## 🏗️ Project Architecture
 
 React Frontend
-      ↓
-   Netlify
-      ↓
+        ↓
+     Netlify
+        ↓
 FastAPI REST API
-      ↓
+        ↓
+Recommendation Model
+        ↓
 TF-IDF + Cosine Similarity
-      ↓
+        ↓
 Movie Dataset + Trained Models
-      ↓
-   TMDB API
+        ↓
+     TMDB API
 
-### Setup
+---
 
-# Backend
+## 📂 Project Structure
 
-# Navigate to the backend directory:
+    movie-recommendation-system/
+    │
+    ├── backend/
+    │   ├── app.py
+    │   ├── requirements.txt
+    │   ├── movies.pkl
+    │   └── similarity.pkl
+    │
+    ├── frontend/
+    │   ├── src/
+    │   │   ├── App.jsx
+    │   │   ├── App.css
+    │   │   └── main.jsx
+    │   │
+    │   ├── package.json
+    │   └── index.html
+    │
+    ├── .gitattributes
+    ├── .gitignore
+    └── README.md
 
-cd backend
+---
 
-#  Install dependencies:
+## 🚀 Setup
 
-pip install -r requirements.txt
+### Clone the Repository
 
-#  Create a .env file:
+    git clone https://github.com/dhruvalcodes/movie-recommendation-system.git
 
-TMDB_API_KEY=your_api_key_here
+    cd movie-recommendation-system
 
-#  Run the API:
+---
 
-uvicorn app:app --reload
+## 🐍 Backend Setup
 
-#  Open the API documentation:
+Navigate to the backend directory:
 
-http://127.0.0.1:8000/docs
+    cd backend
 
-# Frontend
+Install the dependencies:
 
-# Navigate to the frontend directory:
+    pip install -r requirements.txt
 
-cd frontend
+Create a `.env` file:
 
-#  Install dependencies:
+    TMDB_API_KEY=your_api_key_here
 
-npm install
+Start the FastAPI server:
 
-#  Start the development server:
+    uvicorn app:app --reload
 
-npm run dev
+The API will run at:
 
-## Machine Learning
+    http://127.0.0.1:8000
 
-The recommendation system uses:
+Open the API documentation:
 
-- TF-IDF to convert movie metadata into numerical vectors.
-- Cosine Similarity to calculate similarity between movies.
-- Trained recommendation models stored using Git LFS.
+    http://127.0.0.1:8000/docs
 
-## Deployment
+---
 
-Frontend: Netlify
+## ⚛️ Frontend Setup
 
-Backend: Render
+Open a new terminal and navigate to the frontend:
 
-ML model files: Git LFS
+    cd movie-recommendation-system/frontend
 
-## Future Improvements
+Install dependencies:
 
-- Add fuzzy movie-title matching
-- Add genre-based filtering
-- Improve recommendation ranking
-- Add user-based recommendations
-- Add movie search/autocomplete
+    npm install
 
-## Author
+Start the development server:
 
-Dhruval Prajapati
+    npm run dev
+
+The frontend will normally run at:
+
+    http://localhost:5173
+
+---
+
+## 🔌 API Endpoint
+
+### Get Movie Recommendations
+
+    GET /recommend/{movie_name}
+
+Example:
+
+    GET /recommend/iron%20man
+
+Example response:
+
+    {
+      "movie": "iron man",
+      "recommendations": [
+        {
+          "title": "Iron Man 3",
+          "rating": 6.932,
+          "poster": "https://image.tmdb.org/t/p/w500/example.jpg",
+          "overview": "Movie overview...",
+          "release_year": "2013"
+        }
+      ]
+    }
+
+---
+
+## 📊 Machine Learning
+
+The recommendation engine uses content-based filtering.
+
+### TF-IDF
+
+TF-IDF converts movie metadata into numerical vectors based on the importance of words within the dataset.
+
+### Cosine Similarity
+
+Cosine similarity compares the vectors and identifies movies with similar feature representations.
+
+The trained recommendation models are stored using Git LFS because of their large file sizes.
+
+---
+
+## ☁️ Deployment
+
+| Component | Platform |
+|---|---|
+| Frontend | Netlify |
+| Backend | Render |
+| ML Models | Git LFS |
+| Source Code | GitHub |
+
+---
+
+## 🛡️ Error Handling
+
+The frontend handles common errors including:
+
+- Empty movie searches
+- Movies not found in the dataset
+- Backend server errors
+- Network connection errors
+- Empty recommendation results
+
+Users receive friendly messages instead of raw API errors.
+
+---
+
+## 🔮 Future Improvements
+
+- Fuzzy movie-title matching
+- Movie search autocomplete
+- Genre-based filtering
+- Improved recommendation ranking
+- Personalised user recommendations
+- Movie trailers
+- Additional TMDB information
+- Improved mobile responsiveness
+
+---
+
+## 👨‍💻 Author
+
+**Dhruval Prajapati**
+
+GitHub: https://github.com/dhruvalcodes
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving the repository a ⭐ on GitHub.

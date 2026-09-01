@@ -10,6 +10,7 @@ load_dotenv()
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 app = FastAPI(title="Movie Recommendation API")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -18,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load data
+# Load recommendation data
 movies = pickle.load(open("movies.pkl", "rb"))
 similarity = pickle.load(open("similarity.pkl", "rb"))
 
@@ -34,7 +35,12 @@ def recommend(movie):
     index = movie_list[movie_list == movie].index[0]
 
     distances = list(enumerate(similarity[index]))
-    movies_list = sorted(distances, key=lambda x: x[1], reverse=True)[1:6]
+
+    movies_list = sorted(
+        distances,
+        key=lambda x: x[1],
+        reverse=True
+    )[1:6]
 
     recommendations = []
 
@@ -53,36 +59,57 @@ def get_movie_details(movie_name):
     }
 
     response = requests.get(url, params=params)
+
+    if response.status_code != 200:
+        return None
+
     data = response.json()
 
-    if data["results"]:
-        movie = data["results"][0]
+    if not data["results"]:
+        return None
 
-        return {
-            "title": movie["title"],
-            "rating": movie["vote_average"],
-            "poster": f"https://image.tmdb.org/t/p/w500{movie['poster_path']}"
-            if movie["poster_path"] else None
-        }
+    movie = data["results"][0]
 
-    return None
+    poster = None
+
+    if movie.get("poster_path"):
+        poster = f"https://image.tmdb.org/t/p/w500{movie['poster_path']}"
+
+    release_date = movie.get("release_date", "")
+
+    year = release_date[:4] if release_date else "N/A"
+
+    return {
+        "title": movie.get("title"),
+        "rating": movie.get("vote_average", 0),
+        "poster": poster,
+        "overview": movie.get("overview", "No overview available."),
+        "release_year": year
+    }
 
 
 @app.get("/")
 def home():
-    return {"message": "Movie Recommendation API is running!"}
+    return {
+        "message": "Movie Recommendation API is running!"
+    }
 
 
 @app.get("/recommend/{movie_name}")
 def get_recommendations(movie_name: str):
+
     recommendations = recommend(movie_name)
 
     if recommendations is None:
-        raise HTTPException(status_code=404, detail="Movie not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Movie not found in recommendation dataset"
+        )
 
     detailed_movies = []
 
     for movie in recommendations:
+
         details = get_movie_details(movie)
 
         if details:

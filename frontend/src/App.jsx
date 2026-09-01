@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL = "https://movie-recommendation-api-8vao.onrender.com";
+
 function App() {
   const [movie, setMovie] = useState("");
   const [recommendations, setRecommendations] = useState([]);
@@ -19,7 +21,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/recommend/${encodeURIComponent(movie)}`
+        `${API_URL}/recommend/${encodeURIComponent(movie)}`
       );
 
       const data = await response.json();
@@ -29,9 +31,12 @@ function App() {
       }
 
       setRecommendations(data.recommendations);
-
     } catch (err) {
-      setError(err.message);
+      setError(
+        err.message === "Failed to fetch"
+          ? "Unable to connect to the movie recommendation server."
+          : err.message
+      );
     } finally {
       setLoading(false);
     }
@@ -45,12 +50,8 @@ function App() {
 
   return (
     <div className="app">
-
-      {/* HERO */}
       <header className="hero">
-
         <div className="container">
-
           <div className="badge">
             AI MOVIE RECOMMENDER
           </div>
@@ -65,9 +66,7 @@ function App() {
             machine learning and content-based recommendation.
           </p>
 
-          {/* SEARCH */}
           <div className="search-box">
-
             <input
               type="text"
               placeholder="Search for a movie..."
@@ -82,7 +81,6 @@ function App() {
             >
               {loading ? "Finding..." : "Recommend"}
             </button>
-
           </div>
 
           {error && (
@@ -90,28 +88,19 @@ function App() {
               {error}
             </p>
           )}
-
         </div>
-
       </header>
 
-
-      {/* RESULTS */}
       <main className="container results">
-
         {loading && (
           <div className="loading">
             Finding movies similar to <strong>{movie}</strong>...
           </div>
         )}
 
-
         {!loading && recommendations.length > 0 && (
-
           <>
-
             <div className="section-heading">
-
               <div>
                 <p className="eyebrow">
                   RECOMMENDATIONS
@@ -125,89 +114,53 @@ function App() {
               <span className="count">
                 {recommendations.length} movies
               </span>
-
             </div>
 
-
             <div className="movie-grid">
-
               {recommendations.map((movie, index) => (
-
                 <div
                   className="movie-card"
                   key={`${movie.title}-${index}`}
                 >
-
-                  {/* POSTER */}
-
                   <div className="poster-container">
-
                     {movie.poster ? (
-
                       <img
                         src={movie.poster}
                         alt={movie.title}
                         className="poster"
                       />
-
                     ) : (
-
                       <div className="no-poster">
                         No Poster
                       </div>
-
                     )}
-
                   </div>
 
-
-                  {/* INFORMATION */}
-
                   <div className="movie-info">
-
                     <h3>
                       {movie.title}
                     </h3>
 
-
                     <div className="movie-meta">
-
                       <span>
-                        {movie.release_year}
+                        Movie
                       </span>
 
                       <span className="rating">
-                        ★ {movie.rating?.toFixed(1)}
+                        ★ {movie.rating?.toFixed(1) ?? "N/A"}
                       </span>
-
                     </div>
-
-
-                    <p className="overview">
-                      {movie.overview}
-                    </p>
-
                   </div>
-
                 </div>
-
               ))}
-
             </div>
-
           </>
-
         )}
-
-
-        {/* EMPTY STATE */}
 
         {!loading &&
           recommendations.length === 0 &&
           !error && (
-
             <div className="empty-state">
-
               <div className="film-icon">
                 🎬
               </div>
@@ -220,20 +173,12 @@ function App() {
                 Search for a movie above to get
                 similar movie recommendations.
               </p>
-
             </div>
-
           )}
-
       </main>
 
-
-      {/* HOW IT WORKS */}
-
       <section className="how-section">
-
         <div className="container">
-
           <p className="eyebrow">
             HOW IT WORKS
           </p>
@@ -243,9 +188,7 @@ function App() {
           </h2>
 
           <div className="steps">
-
             <div className="step">
-
               <span>01</span>
 
               <h3>
@@ -256,12 +199,9 @@ function App() {
                 Movie information is processed from
                 the TMDB 5000 dataset.
               </p>
-
             </div>
 
-
             <div className="step">
-
               <span>02</span>
 
               <h3>
@@ -272,12 +212,9 @@ function App() {
                 Movie metadata is converted into
                 numerical vectors using TF-IDF.
               </p>
-
             </div>
 
-
             <div className="step">
-
               <span>03</span>
 
               <h3>
@@ -288,12 +225,9 @@ function App() {
                 Cosine similarity identifies movies
                 with similar characteristics.
               </p>
-
             </div>
 
-
             <div className="step">
-
               <span>04</span>
 
               <h3>
@@ -304,29 +238,19 @@ function App() {
                 The most similar movies are returned
                 through the FastAPI backend.
               </p>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-
-      {/* FOOTER */}
-
       <footer>
-
         <p>
           Built with
           <strong>
             Python · FastAPI · Scikit-learn · React
           </strong>
         </p>
-
       </footer>
-
     </div>
   );
 }

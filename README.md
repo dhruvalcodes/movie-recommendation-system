@@ -80,8 +80,9 @@ The movies with the highest similarity scores are returned through the FastAPI b
 The TMDB API provides additional movie information such as posters, ratings, release years, and overviews.
 
 ---
-📂 Project Structure
+## 📂 Project Structure
 
+```text
 movie-recommendation-system/
 │
 ├── backend/
@@ -103,7 +104,7 @@ movie-recommendation-system/
 ├── .gitattributes
 ├── .gitignore
 └── README.md
-
+---
 ## 🚀 Setup
 
 ### Clone the Repository

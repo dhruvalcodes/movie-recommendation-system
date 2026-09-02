@@ -103,7 +103,7 @@ movie-recommendation-system/
 ├── .gitattributes
 ├── .gitignore
 └── README.md
-
+---
 ## 🚀 Setup
 
 ### Clone the Repository

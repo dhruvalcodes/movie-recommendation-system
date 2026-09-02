@@ -82,6 +82,7 @@ The TMDB API provides additional movie information such as posters, ratings, rel
 ---
 ## 📂 Project Structure
 
+```text
 movie-recommendation-system/
 │
 ├── backend/
@@ -103,7 +104,7 @@ movie-recommendation-system/
 ├── .gitattributes
 ├── .gitignore
 └── README.md
----
+```
 ## 🚀 Setup
 
 ### Clone the Repository

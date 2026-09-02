@@ -81,24 +81,6 @@ The TMDB API provides additional movie information such as posters, ratings, rel
 
 ---
 
-## 🏗️ Project Architecture
-
-React Frontend
-        ↓
-     Netlify
-        ↓
-FastAPI REST API
-        ↓
-Recommendation Model
-        ↓
-TF-IDF + Cosine Similarity
-        ↓
-Movie Dataset + Trained Models
-        ↓
-     TMDB API
-
----
-
 ## 📂 Project Structure
 
     movie-recommendation-system/

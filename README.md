@@ -248,7 +248,7 @@ Users receive friendly messages instead of raw API errors.
 
 **Dhruval Prajapati**
 
-GitHub: https://github.com/dhruvalcodes
+LinkedIn: [Dhruval Prajapati](https://www.linkedin.com/in/dhruval-prajapati-1732aa316/)
 
 ---
 
